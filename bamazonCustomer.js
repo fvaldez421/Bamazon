@@ -78,7 +78,7 @@ function launchStore(username) {
 };
 
 function launchManager(username) {
-
+	console.log("INCOMPLETE FUNCTION, CHECK IN LATER :)");
 };
 function shopAll() {
 	console.log("All items listed here...");
@@ -131,17 +131,37 @@ function buy(res) {
 			name: "quantity"
 		}
 		]).then(function(input) {
-			var query = connection.query(
-				"SELECT * FROM items WHERE ?", {id: input.product}, function(err, res) {
-				if (err) {
-					console.log(err);
-				}else {
-					updateQuant(res, input);
+			var total = (input.quantity * res[0].price);
+			console.log("");
+			inquirer.prompt([
+				{
+					type: "list",
+					message: clc.red("Are you sure? ") +  "Items Total:" + clc.yellow.bold(" $" + total),
+					choices: ["Yes", "No"],
+					name: "confirm"
 				}
-			});
+				]).then(function(sure) {
+					if (sure.confirm === "Yes") {
+
+						confirmPur(input);
+					}else {
+						finished();
+					};
+				});
+
+			function confirmPur(input) {
+					var query = connection.query(
+						"SELECT * FROM items WHERE ?", {id: input.product}, function(err, res) {
+						if (err) {
+							console.log(err);
+						}else {
+							updateQuant(res, input, total);
+						};
+					});
+					}
 		});
 
-	function updateQuant(res, input) {
+	function updateQuant(res, input, total) {
 		if (input.quantity > res[0].quantity) {
 			console.log(clc.red.bold("This item is out of stock :("));
 			finished();
@@ -181,7 +201,7 @@ function finished() {
 		}
 		]).then(function(input) {
 			if (input.done === "No") {
-				console.log(clc.red.bold("Thank you, come again!"));
+				console.log(clc.green.bold("Thank you, come again!"));
 				connection.end();
 			}else {
 				if (customer === true) {
