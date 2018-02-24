@@ -18,6 +18,7 @@
   "homepage": "https://github.com/fvaldez421/Bamazon#readme",
   "dependencies": {
     "cli-color": "^1.2.0",
+    "cli-table": "^0.3.1",
     "inquirer": "^5.1.0",
     "mysql": "^2.15.0"
   }
