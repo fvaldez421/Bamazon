@@ -13,10 +13,10 @@
 
 <h3>Examples below:</h3>
 <p>Navigate to the appropriate directory and "npm i" (install) all the packages in the JSON file. If there are any issues, install the packages manually following the steps on the next image.</p>
-<img src="images/nav_inst.jpg" alt="img">
+<img src="images/nav_inst.jpeg" alt="img">
 
 <p>Navigate to the appropriate directory, and "npm init" (initialize npm and create JSON files), then install the npm packages using command line.</p>
-<img src="images/npm_init.jpg">
+<img src="images/npm_init.jpg" alt="img">
 
 <p>If all goes well, run the sql file in mySQL or enter the commands manually</p>
 <img src="images/mySQL.jpg" alt="img">
