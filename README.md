@@ -13,30 +13,30 @@
 
 <h3>Examples below:</h3>
 <p>Navigate to the appropriate directory and "npm i" (install) all the packages in the JSON file. If there are any issues, install the packages manually following the steps on the next image.</p>
-<img src="images/nav_inst.jpeg" alt="img">
+<img src="https://github.com/fvaldez421/Bamazon/blob/master/images/nav_inst.JPG" alt="img">
 
 <p>Navigate to the appropriate directory, and "npm init" (initialize npm and create JSON files), then install the npm packages using command line.</p>
-<img src="images/npm_init.jpg" alt="img">
+<img src="https://github.com/fvaldez421/Bamazon/blob/master/images/npm_init.JPG" alt="img">
 
 <p>If all goes well, run the sql file in mySQL or enter the commands manually</p>
-<img src="images/mySQL.jpg" alt="img">
-<img src="images/schema.jpg" alt="img">
+<img src="https://github.com/fvaldez421/Bamazon/blob/master/images/mySQL.JPG" alt="img">
+<img src="https://github.com/fvaldez421/Bamazon/blob/master/images/schema.JPG" alt="img">
 
 <p>Now that we have a database and all of out npm packages installed, we need to edit the mySQL login credentials in the bamazonCustomer.js file.</p>
-<img src="images/login.jpg" alt="img">
+<img src="https://github.com/fvaldez421/Bamazon/blob/master/images/login.JPG" alt="img">
 <p>After you update your login credentials, Bamazon should be ready to go!</p>
 
 
 <h2>Using the Program</h2>
 
-<img src="images/shop_all.jpg">
+<img src="https://github.com/fvaldez421/Bamazon/blob/master/images/shop_all.JPG">
 <p>Above shows how you use a username and password to login, you can shop all or by department (below).</p>
-<img src="images/shop_dept.jpg">
+<img src="https://github.com/fvaldez421/Bamazon/blob/master/images/shop_dept.JPG">
 
 <p>If you login as a manager, you can view all products or view low inventory (less than 5 items, below).</p>
-<img src="images/man_low.jpg">
+<img src="https://github.com/fvaldez421/Bamazon/blob/master/images/man_low.JPG">
 <p>The program will ask you if you'd like to restock after viewing all or low by default, or after selecting "Add Inventory". Below we have an example of a manager "Adding an Item"</p>
-<img src="images/add_prod.jpg">
+<img src="https://github.com/fvaldez421/Bamazon/blob/master/images/add_prod.JPG">
 
 <p>Whether in a Manager or customer login, it will lead you towards an exit option after completing a command. If you select the "No" option, it will loop back to the shopping or managment options menu.</p>
 
