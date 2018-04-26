@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
 
   user: "root",
 
-  password: "",
+  password: "CMMAnum_1",
   database: "bamazonDB"
 });
 
