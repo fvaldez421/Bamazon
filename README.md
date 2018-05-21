@@ -9,7 +9,7 @@
 
 <p>2nd: You will need to install all the necessary npm packages in the JSON file. If for any reason there are any issues, you will need to open your command line, and install the npm packages manually.</p>
 
-<p>3rd: You will need to run the SCHEMA.sql file in a mySQL UI, run the file in mySQL via command line, or enter the commands manually.</p>
+<p>3rd: You will need to run the SCHEMA.sql file in a mySQL UI, run the file in mySQL via command line, or enter the commands individuallty through your shell.</p>
 
 <h3>Examples below:</h3>
 <p>Navigate to the appropriate directory and "npm i" (install) all the packages in the JSON file. If there are any issues, install the packages manually following the steps on the next image.</p>
