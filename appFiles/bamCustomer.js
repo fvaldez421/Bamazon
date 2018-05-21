@@ -1,75 +1,17 @@
-
-var mysql = require("mysql");
+var connection = require("./DB");
 var inquirer = require("inquirer");
 var clc = require("cli-color");
 var Table = require("cli-table");
 
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-
-  user: "root",
-
-  password: "CMMAnum_1",
-  database: "bamazonDB"
-});
-
-var username;
-var manView = false;
-var allProds = false;
+module.exports = function() {
+	function valNum(num) {
+		var reg = /^\d+$/;
+		return reg.test(num) || "Entry should be a number!";
+	};
 var lowInv = false;
 var noItem = false;
-
-
-connection.connect(function(err) {
-	if (err) throw err;
-	console.log("Connected as id " + connection.threadId + "\n");
-	welcomeScreen();	
-});
-
-function valStr(str) {
-	return str !== "" || "Entry must be in letters!";
-};
-
-function valNum(num) {
-	var reg = /^\d+$/;
-	return reg.test(num) || "Entry should be a number!";
-};
-
-function welcomeScreen() {
-	console.log("Welcome to Bamazon! Please Log in to continue.");
-	inquirer.prompt([
-		{
-			type: "input",
-			message: "Username: ",
-			name: "username",
-			validate: valStr
-		},
-		{
-			type: "input",
-			message: "Password: ",
-			name: "password"
-		},
-		{
-			type: "list",
-			message: "Type of Login: ",
-			choices: ["Customer", "Manager"],
-			name: "loginType"
-		}
-		]).then(function(input) {
-			username = input.username
-			if (input.loginType === "Manager") {
-				console.log("Welcome Manager, " + username + "!");
-				launchManager(username);
-				manView = true;
-			}else {
-				console.log("Welcome, " + username + "!")
-				launchStore(username);
-			};
-		});
-};
-
+launchStore();
 function launchStore(username) {
 	inquirer.prompt([
 		{
@@ -451,4 +393,4 @@ function addItem() {
 	};
 };
 
-
+}
