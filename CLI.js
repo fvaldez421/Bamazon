@@ -1,6 +1,8 @@
 var inquirer = require("inquirer");
 var clc = require("cli-color");
 var connection = require("./appFiles/DB");
+var launchCustomer = require("./appFiles/bamCustomer");
+var launchManager = require("./appFiles/bamManager");
 
 connection.connect(function(err) {
 	if (err) throw err;
@@ -44,7 +46,7 @@ function welcomeScreen() {
 				launchManager(username);
 			}else {
 				console.log("Welcome, " + username + "!")
-				launchStore(username);
+				launchCustomer(username);
 			};
 		});
 };

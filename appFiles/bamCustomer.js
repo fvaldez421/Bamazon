@@ -1,13 +1,18 @@
+var connection = require("./DB");
 var inquirer = require("inquirer");
 var clc = require("cli-color");
 var Table = require("cli-table");
 
 
-module.exports = {
-lowInv: false,
-noItem: false,
-
-launchStore: function(username) {
+module.exports = function() {
+	function valNum(num) {
+		var reg = /^\d+$/;
+		return reg.test(num) || "Entry should be a number!";
+	};
+var lowInv = false;
+var noItem = false;
+launchStore();
+function launchStore(username) {
 	inquirer.prompt([
 		{
 			type: "list",
@@ -22,9 +27,9 @@ launchStore: function(username) {
 				byDept();
 			};
 		});
-},
+};
 
-showAll: function() {
+function showAll() {
 	console.log("");
 	connection.query("SELECT * FROM items", function(err, res) {
 		if (err) {
@@ -35,9 +40,9 @@ showAll: function() {
 		};
 		buy(res);
 	});
-},
+};
 
-byDept: function() {
+function byDept() {
 	console.log("");
 	connection.query("SELECT * FROM items", function(err, res) {
 		if (err) throw err;
@@ -73,9 +78,9 @@ byDept: function() {
 				});
 			});
 	});
-},
+};
 
-buy: function(res) {
+function buy(res) {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -157,9 +162,9 @@ buy: function(res) {
 			};
 		};
 	};
-},
+};
 
-exit: function(manView) {
+function exit(manView) {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -177,9 +182,9 @@ exit: function(manView) {
 			};
 		});
 
-},
+};
 
-modeSelect: function() {
+function modeSelect() {
 	if (manView) {
 		console.log("");
 		launchManager();
@@ -187,9 +192,9 @@ modeSelect: function() {
 		console.log("");
 		launchStore();
 	};
-},
+};
 
-launchManager: function(lowInv) {
+function launchManager(lowInv) {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -222,9 +227,9 @@ launchManager: function(lowInv) {
 				break;
 			};
 		});
-},
+};
 
-manAll: function() {
+function manAll() {
 	console.log("");
 	connection.query("SELECT * FROM items", function(err, res) {
 		var table = new Table ({
@@ -243,9 +248,9 @@ manAll: function() {
 		console.log(table.toString());
 		moreItem();
 	});
-},
+};
 
-manLow: function() {
+function manLow() {
 	console.log("");
 	connection.query("SELECT * FROM items", function(err, res) {
 		var table = new Table ({
@@ -266,9 +271,9 @@ manLow: function() {
 		console.log(table.toString());
 		moreItem();
 	});
-},
+};
 
-moreItem: function(lowInv) {
+function moreItem(lowInv) {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -335,9 +340,9 @@ moreItem: function(lowInv) {
 			};
 		};
 	};
-},
+};
 
-addItem: function() {
+function addItem() {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -386,6 +391,6 @@ addItem: function() {
 			console.log(clc.yellow.bold("\n" + input.quantity + " " + input.name + " Added!" + "\n"));
 		};
 	};
-},
+};
 
 }
