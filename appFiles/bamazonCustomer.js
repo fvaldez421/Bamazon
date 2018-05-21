@@ -1,76 +1,13 @@
-
-var mysql = require("mysql");
 var inquirer = require("inquirer");
 var clc = require("cli-color");
 var Table = require("cli-table");
 
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
+module.exports = {
+lowInv: false,
+noItem: false,
 
-  user: "root",
-
-  password: "CMMAnum_1",
-  database: "bamazonDB"
-});
-
-var username;
-var manView = false;
-var allProds = false;
-var lowInv = false;
-var noItem = false;
-
-
-connection.connect(function(err) {
-	if (err) throw err;
-	console.log("Connected as id " + connection.threadId + "\n");
-	welcomeScreen();	
-});
-
-function valStr(str) {
-	return str !== "" || "Entry must be in letters!";
-};
-
-function valNum(num) {
-	var reg = /^\d+$/;
-	return reg.test(num) || "Entry should be a number!";
-};
-
-function welcomeScreen() {
-	console.log("Welcome to Bamazon! Please Log in to continue.");
-	inquirer.prompt([
-		{
-			type: "input",
-			message: "Username: ",
-			name: "username",
-			validate: valStr
-		},
-		{
-			type: "input",
-			message: "Password: ",
-			name: "password"
-		},
-		{
-			type: "list",
-			message: "Type of Login: ",
-			choices: ["Customer", "Manager"],
-			name: "loginType"
-		}
-		]).then(function(input) {
-			username = input.username
-			if (input.loginType === "Manager") {
-				console.log("Welcome Manager, " + username + "!");
-				launchManager(username);
-				manView = true;
-			}else {
-				console.log("Welcome, " + username + "!")
-				launchStore(username);
-			};
-		});
-};
-
-function launchStore(username) {
+launchStore: function(username) {
 	inquirer.prompt([
 		{
 			type: "list",
@@ -85,9 +22,9 @@ function launchStore(username) {
 				byDept();
 			};
 		});
-};
+},
 
-function showAll() {
+showAll: function() {
 	console.log("");
 	connection.query("SELECT * FROM items", function(err, res) {
 		if (err) {
@@ -98,9 +35,9 @@ function showAll() {
 		};
 		buy(res);
 	});
-};
+},
 
-function byDept() {
+byDept: function() {
 	console.log("");
 	connection.query("SELECT * FROM items", function(err, res) {
 		if (err) throw err;
@@ -136,9 +73,9 @@ function byDept() {
 				});
 			});
 	});
-};
+},
 
-function buy(res) {
+buy: function(res) {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -220,9 +157,9 @@ function buy(res) {
 			};
 		};
 	};
-};
+},
 
-function exit(manView) {
+exit: function(manView) {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -240,9 +177,9 @@ function exit(manView) {
 			};
 		});
 
-};
+},
 
-function modeSelect() {
+modeSelect: function() {
 	if (manView) {
 		console.log("");
 		launchManager();
@@ -250,9 +187,9 @@ function modeSelect() {
 		console.log("");
 		launchStore();
 	};
-};
+},
 
-function launchManager(lowInv) {
+launchManager: function(lowInv) {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -285,9 +222,9 @@ function launchManager(lowInv) {
 				break;
 			};
 		});
-};
+},
 
-function manAll() {
+manAll: function() {
 	console.log("");
 	connection.query("SELECT * FROM items", function(err, res) {
 		var table = new Table ({
@@ -306,9 +243,9 @@ function manAll() {
 		console.log(table.toString());
 		moreItem();
 	});
-};
+},
 
-function manLow() {
+manLow: function() {
 	console.log("");
 	connection.query("SELECT * FROM items", function(err, res) {
 		var table = new Table ({
@@ -329,9 +266,9 @@ function manLow() {
 		console.log(table.toString());
 		moreItem();
 	});
-};
+},
 
-function moreItem(lowInv) {
+moreItem: function(lowInv) {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -398,9 +335,9 @@ function moreItem(lowInv) {
 			};
 		};
 	};
-};
+},
 
-function addItem() {
+addItem: function() {
 	console.log("");
 	inquirer.prompt([
 		{
@@ -449,6 +386,6 @@ function addItem() {
 			console.log(clc.yellow.bold("\n" + input.quantity + " " + input.name + " Added!" + "\n"));
 		};
 	};
-};
+},
 
-
+}
