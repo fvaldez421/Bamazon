@@ -14,11 +14,6 @@ function valStr(str) {
 	return str !== "" || "Entry must be in letters!";
 };
 
-function valNum(num) {
-	var reg = /^\d+$/;
-	return reg.test(num) || "Entry should be a number!";
-};
-
 function welcomeScreen() {
 	console.log("Welcome to Bamazon! Please Log in to continue.");
 	inquirer.prompt([
